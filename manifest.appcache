@@ -1,0 +1,11 @@
+CACHE MANIFEST
+
+index.html
+
+NETWORK:
+
+online.html
+
+FALLBACK:
+# offline 시 해당 파일을 대치하기 위해 결과적으로 offline.html 을 캐시한다.
+/ offline.html

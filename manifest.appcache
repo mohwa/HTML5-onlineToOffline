@@ -1,15 +1,9 @@
 CACHE MANIFEST
 
-resources/css/offline-theme-chrome.css
-resources/css/offline-language-english.css
-
-bower_components/jquery/dist/jquery.min.js
-bower_components/offline/offline.min.js
-bower_components/notifyjs/dist/notify.min.js
-bower_components/notifyjs/dist/styles/bootstrap/notify-bootstrap.js
 
 NETWORK:
 
 *
 
 FALLBACK:
+/ resources/img/offline.png

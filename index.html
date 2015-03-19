@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--<html manifest="manifest.appcache">-->
+<html manifest="manifest.appcache">
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -12,6 +12,19 @@
     <script type="text/javascript" src="bower_components/offline/offline.min.js"></script>
     <script type="text/javascript" src="bower_components/notifyjs/dist/notify.min.js"></script>
     <script type="text/javascript" src="bower_components/notifyjs/dist/styles/bootstrap/notify-bootstrap.js"></script>
+
+    <style type="text/css">
+
+        .offline{
+            background: black url("resources/img/offline.png") 50% 0 repeat-x;
+        }
+
+        .online{
+            background-color: #ffffff;
+            background-image: url("");
+        }
+
+    </style>
     <script type="text/javascript">
 
 
@@ -72,10 +85,14 @@
 
     Offline.on('confirmed-up', function () {
         notify('ONLINE!!');
+
+        $(document.body).attr('class', 'online');
     });
 
     Offline.on('confirmed-down', function () {
         notify('OFFLINE!!');
+
+        $(document.body).attr('class', 'offline');
     });
 
 
@@ -83,20 +100,20 @@
 </head>
 <body>
 <div class="wrap">
-    <div class="online">
-        <form>
-            <fieldset>
-                <!-- Form Name -->
-                <legend><div class="text-center h3">로그인 페이지</div></legend>
-                <div>
-                    <input id="username" name="username" type="text" placeholder="Username" class="form-control input-md">
-                </div>
-                <div>
-                    <input id="password" name="username" type="text" placeholder="Password" class="form-control input-md">
-                </div>
-            </fieldset>
-        </form>
-    </div>
+    <!--<div class="online">-->
+        <!--<form>-->
+            <!--<fieldset>-->
+                <!--&lt;!&ndash; Form Name &ndash;&gt;-->
+                <!--<legend><div class="text-center h3">로그인 페이지</div></legend>-->
+                <!--<div>-->
+                    <!--<input id="username" name="username" type="text" placeholder="Username" class="form-control input-md">-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<input id="password" name="username" type="text" placeholder="Password" class="form-control input-md">-->
+                <!--</div>-->
+            <!--</fieldset>-->
+        <!--</form>-->
+    <!--</div>-->
 </div>
 </body>
 </html>

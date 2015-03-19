@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html manifest="manifest.appcache">
+<!--<html manifest="manifest.appcache">-->
+<html>
 <head lang="en">
   <meta charset="UTF-8">
   <title></title>
@@ -13,65 +14,70 @@
     <script type="text/javascript" src="bower_components/notifyjs/dist/styles/bootstrap/notify-bootstrap.js"></script>
     <script type="text/javascript">
 
-    $(function(){
 
-        var opt = {
-            // Should we check the connection status immediatly on page load.
-            checkOnLoad: true,
-            // Should we monitor AJAX requests to help decide if we have a connection.
-            interceptRequests: true,
-            // Should we automatically retest periodically when the connection is down (set to false to disable).
-            reconnect: {
-                // How many seconds should we wait before rechecking.
-                initialDelay: 3
-            },
+    var opt = {
+        // Should we check the connection status immediatly on page load.
+        checkOnLoad: true,
+        // Should we monitor AJAX requests to help decide if we have a connection.
+        interceptRequests: true,
+        // Should we automatically retest periodically when the connection is down (set to false to disable).
+        reconnect: {
+            // How many seconds should we wait before rechecking.
+            initialDelay: 3
+        },
 
-            // Should we store and attempt to remake requests which fail while the connection is down.
-            requests: true,
+        // Should we store and attempt to remake requests which fail while the connection is down.
+        requests: true,
 
-            // Should we show a snake game while the connection is down to keep the user entertained?
-            // It's not included in the normal build, you should bring in js/snake.js in addition to
-            // offline.min.js.
-            game: false,
+        // Should we show a snake game while the connection is down to keep the user entertained?
+        // It's not included in the normal build, you should bring in js/snake.js in addition to
+        // offline.min.js.
+        game: false,
 
-            checks: {
-                xhr: {
-                    url: 'dumy.json'
-                }
+        checks: {
+            xhr: {
+                url: 'dumy.json'
             }
-        };
-//
-        Offline.options = opt;
-        //    if (window.navigator.onLine !== undefined){
-//      if (navigator.onLine) {
-//
-////        top.location.href = 'online.html';
-//      } else {
-////        top.location.href = 'offline.html';
-//      }
-//    }
-//    else{
-//    }
+        }
+    };
+    Offline.options = opt;
 
-//        window.addEventListener("offline", function(e) {
-//            document.body.innerHTML = 'offline';
-//        });
-//        window.addEventListener("online", function(e) {
-//            document.body.innerHTML = 'online';
-//        });
 
-        Offline.on('confirmed-up', function () {
-            console.log(Offline.state);
-            $.notify("ONLINE");
+//    window.addEventListener("offline", function(e) {
+//        document.body.innerHTML = 'offline';
+//    });
+//    window.addEventListener("online", function(e) {
+//        document.body.innerHTML = 'online';
+//    });
 
-        });
+    function notify(msg){
 
-        Offline.on('confirmed-down', function () {
-            console.log(Offline.state);
-            $.notify("OFFLINE");
-        });
+        msg = msg || '';
 
+
+        if ('Notification' in window) {
+
+            Notification.requestPermission(function () {
+
+                var notification = new Notification("MESSAGE", {
+                    body: msg,
+                    tag: 'preset',
+                    icon: 'http://www.flawd.se/wp-content/uploads/offline-300x242.png'
+                });
+            });
+        }
+
+        $.notify(msg);
+    };
+
+    Offline.on('confirmed-up', function () {
+        notify('ONLINE!!');
     });
+
+    Offline.on('confirmed-down', function () {
+        notify('OFFLINE!!');
+    });
+
 
   </script>
 </head>

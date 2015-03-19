@@ -1,33 +1,99 @@
 <!DOCTYPE html>
 <html manifest="manifest.appcache">
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+
+    <link rel="stylesheet" href="resources/css/offline-theme-chrome.css" />
+    <link rel="stylesheet" href="resources/css/offline-language-english.css" />
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/offline/offline.min.js"></script>
+    <script type="text/javascript" src="bower_components/notifyjs/dist/notify.min.js"></script>
+    <script type="text/javascript" src="bower_components/notifyjs/dist/styles/bootstrap/notify-bootstrap.js"></script>
+
+    <style type="text/css">
+        body{
+            background-color: #efd897;
+        }
+        .offline{
+            background: black url("resources/img/offline.png") 50% 0 repeat-x;
+        }
+        .online{
+            background-color: #efd897;
+            background-image: url("");
+        }
+    </style>
     <script type="text/javascript">
-
-        if (window.navigator.onLine !== undefined){
-
-            if (navigator.onLine) {
-                top.location.href = 'online.html';
-            } else {
-                top.location.href = 'offline.html';
+        var opt = {
+            // Should we check the connection status immediatly on page load.
+            checkOnLoad: true,
+            // Should we monitor AJAX requests to help decide if we have a connection.
+            interceptRequests: true,
+            // Should we automatically retest periodically when the connection is down (set to false to disable).
+            reconnect: {
+                // How many seconds should we wait before rechecking.
+                initialDelay: 3
+            },
+            // Should we store and attempt to remake requests which fail while the connection is down.
+            requests: true,
+            // Should we show a snake game while the connection is down to keep the user entertained?
+            // It's not included in the normal build, you should bring in js/snake.js in addition to
+            // offline.min.js.
+            game: false,
+            checks: {
+                xhr: {
+                    url: 'check.json'
+                }
             }
-        }
-        else{
-
-        }
-
-        window.addEventListener("offline", function(e) {
-            top.location.href = 'offline.html';
+        };
+        Offline.options = opt;
+        //    window.addEventListener("offline", function(e) {
+        //        document.body.innerHTML = 'offline';
+        //    });
+        //    window.addEventListener("online", function(e) {
+        //        document.body.innerHTML = 'online';
+        //    });
+        function notify(msg){
+            msg = msg || '';
+            if ('Notification' in window) {
+                Notification.requestPermission(function () {
+                    var notification = new Notification("MESSAGE", {
+                        body: msg,
+                        tag: 'preset',
+                        icon: 'http://www.flawd.se/wp-content/uploads/offline-300x242.png'
+                    });
+                });
+            }
+            $.notify(msg);
+        };
+        Offline.on('confirmed-up', function () {
+            notify('ONLINE!!');
+            $(document.body).attr('class', 'online');
         });
-
-        window.addEventListener("online", function(e) {
-            top.location.href = 'online.html';
+        Offline.on('confirmed-down', function () {
+            notify('OFFLINE!!');
+            $(document.body).attr('class', 'offline');
         });
-
     </script>
 </head>
 <body>
-index
+<div class="wrap">
+    <!--<div class="online">-->
+    <!--<form>-->
+    <!--<fieldset>-->
+    <!--&lt;!&ndash; Form Name &ndash;&gt;-->
+    <!--<legend><div class="text-center h3">로그인 페이지</div></legend>-->
+    <!--<div>-->
+    <!--<input id="username" name="username" type="text" placeholder="Username" class="form-control input-md">-->
+    <!--</div>-->
+    <!--<div>-->
+    <!--<input id="password" name="username" type="text" placeholder="Password" class="form-control input-md">-->
+    <!--</div>-->
+    <!--</fieldset>-->
+    <!--</form>-->
+    <!--</div>-->
+</div>
 </body>
 </html>

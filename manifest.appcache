@@ -3,5 +3,5 @@ CACHE MANIFEST
 NETWORK:
 
 FALLBACK:
-/ images/sprite_download.png
+/images images/sprite_download.png
 / index.html

@@ -1,0 +1,27 @@
+{
+  "name": "offline API test",
+  "version": "0.0.1",
+  "homepage": "http://mohwaproject.tistory.com/",
+  "authors": [
+    "mohwa <yanione2@gmail.com>"
+  ],
+  "description": "offline API test",
+  "dependencies": {
+    "offlinejs-simulate-ui": "",
+    "notifyjs": "~0.3.2",
+    "jquery": "~2.1.3"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "html5",
+    "offline",
+    "notify"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".gitignore"
+  ],
+  "license": "MIT"
+}

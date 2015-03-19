@@ -1,17 +1,27 @@
 <!DOCTYPE html>
-<html>
-
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Offline-test : HTML5 Application cache and on/offline API 테스트 소스">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Offline-test</title>
-  </head>
-
-  <body>
-  daksjdlkajd
-  </body>
+<html manifest="manifest.appcache">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <script type="text/javascript">
+    if (window.navigator.onLine !== undefined){
+      if (navigator.onLine) {
+        top.location.href = 'online.html';
+      } else {
+        top.location.href = 'offline.html';
+      }
+    }
+    else{
+    }
+    window.addEventListener("offline", function(e) {
+      top.location.href = 'offline.html';
+    });
+    window.addEventListener("online", function(e) {
+      top.location.href = 'online.html';
+    });
+  </script>
+</head>
+<body>
+index
+</body>
 </html>

@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <title></title>
   <script type="text/javascript">
-    if (window.navigator.onLine !== undefined){
-      if (navigator.onLine) {
+//    if (window.navigator.onLine !== undefined){
+//      if (navigator.onLine) {
+//
+////        top.location.href = 'online.html';
+//      } else {
+////        top.location.href = 'offline.html';
+//      }
+//    }
+//    else{
+//    }
 
-//        top.location.href = 'online.html';
-      } else {
-//        top.location.href = 'offline.html';
-      }
-    }
-    else{
-    }
     window.addEventListener("offline", function(e) {
-      top.location.href = 'offline.html';
+      document.body.innerHTML = '<div>offline</div>';
     });
     window.addEventListener("online", function(e) {
-      top.location.href = 'online.html';
+      document.body.innerHTML = '<div>online</div>';
     });
   </script>
 </head>
 <body>
-index
 </body>
 </html>

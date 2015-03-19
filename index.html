@@ -16,11 +16,12 @@
 //    }
 
     window.addEventListener("offline", function(e) {
-      document.body.innerHTML = '<div><img src="images/sprite_download.png" /></div>';
+//      document.body.innerHTML = '<div><img src="images/sprite_download.png" /></div>';
+        top.location.href = 'offline.html';
     });
-    window.addEventListener("online", function(e) {
-      document.body.innerHTML = '<div>online</div>';
-    });
+//    window.addEventListener("online", function(e) {
+//      document.body.innerHTML = '<div>online</div>';
+//    });
   </script>
 </head>
 <body>
